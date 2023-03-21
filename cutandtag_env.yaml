@@ -1,0 +1,15 @@
+name: cutandtag
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python
+  - bioconda::fastqc
+  - bioconda::bowtie2
+  - bioconda::samtools
+  - bioconda::bedtools
+  - bioconda::picard
+  - bioconda::deeptools
+  - bioconda::multiqc
+  - bioconda::macs2
