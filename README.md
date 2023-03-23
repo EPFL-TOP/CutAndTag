@@ -101,6 +101,6 @@ samtools index data/mapping/Dr_Neg_S20_bowtie2.sorted.bam
 We can now run the peak calling
 ```shell
 mkdir data/peakcalling
-macs2 callpeak -t data/mapping/Dr_VenusAb_S18_bowtie2.sorted.bam -c data/mapping/Dr_Neg_S20_bowtie2.sorted.bam -g hs -f BAMPE -n macs2_peak_q0.01 --outdir data/peakcalling/VenusAb_S18 -q 0.01 --keep-dup all
-macs2 callpeak -t data/mapping/Dr_GFPpoly_S17_bowtie2.sorted.bam -c data/mapping/Dr_Neg_S20_bowtie2.sorted.bam -g hs -f BAMPE -n macs2_peak_q0.01 --outdir data/peakcalling/Dr_GFPpoly_S17 -q 0.01 --keep-dup all
+macs2 callpeak -t data/mapping/Dr_VenusAb_S18_bowtie2.sorted.bam -c data/mapping/Dr_Neg_S20_bowtie2.sorted.bam -g 2.7e+9 -f BAMPE -n macs2_peak_q0.01 --outdir data/peakcalling/Dr_VenusAb_S18 -q 0.01 --keep-dup all
+macs2 callpeak -t data/mapping/Dr_GFPpoly_S17_bowtie2.sorted.bam -c data/mapping/Dr_Neg_S20_bowtie2.sorted.bam -g 2.7e+9 -f BAMPE -n macs2_peak_q0.01 --outdir data/peakcalling/Dr_GFPpoly_S17 -q 0.01 --keep-dup all
 ```
