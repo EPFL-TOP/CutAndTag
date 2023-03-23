@@ -68,10 +68,10 @@ Now for each of our sample, we can run the alignment  (this might take some time
 
 ```shell
 mkdir data/mapping/
-bowtie2 --local --very-sensitive-local --no-unal --phred33 -I 10 -X 700 -p 10 -x data/bowtie2Index/danio_rerio -1 data/fastq/Dr_GFPpoly_S17/Dr_GFPpoly_S17_R1_001.fastq.gz -2 data/fastq/Dr_GFPpoly_S17/Dr_GFPpoly_S17_R2_001.fastq.gz -S data/mapping/Dr_GFPpoly_S17_bowtie2.sam &>> summary_alignment.txt
-bowtie2 --local --very-sensitive-local --no-unal --phred33 -I 10 -X 700 -p 10 -x data/bowtie2Index/danio_rerio -1 data/fastq/Dr_VenusAb_S18/Dr_VenusAb_S18_R1_001.fastq.gz -2 data/fastq/Dr_VenusAb_S18/Dr_VenusAb_S18_R2_001.fastq.gz -S data/mapping/Dr_VenusAb_S18_bowtie2.sam &>> summary_alignment.txt
-bowtie2 --local --very-sensitive-local --no-unal --phred33 -I 10 -X 700 -p 10 -x data/bowtie2Index/danio_rerio -1 data/fastq/Dr_H2AZ_S19/Dr_H2AZ_S19_R1_001.fastq.gz -2 data/fastq/Dr_H2AZ_S19/Dr_H2AZ_S19_R2_001.fastq.gz -S data/mapping/Dr_H2AZ_S19_bowtie2.sam  &>> summary_alignment.txt
-bowtie2 --local --very-sensitive-local --no-unal --phred33 -I 10 -X 700 -p 10 -x data/bowtie2Index/danio_rerio -1 data/fastq/Dr_Neg_S20/Dr_Neg_S20_R1_001.fastq.gz -2 data/fastq/Dr_Neg_S20/Dr_Neg_S20_R2_001.fastq.gz -S data/mapping/Dr_Neg_S20_bowtie2.sam  &>> summary_alignment.txt
+bowtie2 --local --very-sensitive-local --no-unal --phred33 -I 10 -X 700 -p 4 -x data/bowtie2Index/danio_rerio -1 data/fastq/Dr_GFPpoly_S17/Dr_GFPpoly_S17_R1_001.fastq.gz -2 data/fastq/Dr_GFPpoly_S17/Dr_GFPpoly_S17_R2_001.fastq.gz -S data/mapping/Dr_GFPpoly_S17_bowtie2.sam &>> summary_alignment.txt
+bowtie2 --local --very-sensitive-local --no-unal --phred33 -I 10 -X 700 -p 4 -x data/bowtie2Index/danio_rerio -1 data/fastq/Dr_VenusAb_S18/Dr_VenusAb_S18_R1_001.fastq.gz -2 data/fastq/Dr_VenusAb_S18/Dr_VenusAb_S18_R2_001.fastq.gz -S data/mapping/Dr_VenusAb_S18_bowtie2.sam &>> summary_alignment.txt
+bowtie2 --local --very-sensitive-local --no-unal --phred33 -I 10 -X 700 -p 4 -x data/bowtie2Index/danio_rerio -1 data/fastq/Dr_H2AZ_S19/Dr_H2AZ_S19_R1_001.fastq.gz -2 data/fastq/Dr_H2AZ_S19/Dr_H2AZ_S19_R2_001.fastq.gz -S data/mapping/Dr_H2AZ_S19_bowtie2.sam  &>> summary_alignment.txt
+bowtie2 --local --very-sensitive-local --no-unal --phred33 -I 10 -X 700 -p 4 -x data/bowtie2Index/danio_rerio -1 data/fastq/Dr_Neg_S20/Dr_Neg_S20_R1_001.fastq.gz -2 data/fastq/Dr_Neg_S20/Dr_Neg_S20_R2_001.fastq.gz -S data/mapping/Dr_Neg_S20_bowtie2.sam  &>> summary_alignment.txt
 ```
 
 We now need to convert our `sam` files to `bam` files
@@ -101,6 +101,6 @@ samtools index data/mapping/Dr_Neg_S20_bowtie2.sorted.bam
 We can now run the peak calling
 ```shell
 mkdir data/peakcalling
-macs2 callpeak -t data/mapping/Dr_VenusAb_S18_bowtie2.sorted.bam -c data/mapping/Dr_Neg_S20_bowtie2.sorted.bam -g hs -f BAMPE -n macs2_peak_q0.01 --outdir data/peakcalling/VenusAb_S18 -q 0.01 --keep-dup all
-macs2 callpeak -t data/mapping/Dr_GFPpoly_S17_bowtie2.sorted.bam -c data/mapping/Dr_Neg_S20_bowtie2.sorted.bam -g hs -f BAMPE -n macs2_peak_q0.01 --outdir data/peakcalling/Dr_GFPpoly_S17 -q 0.01 --keep-dup all
+macs2 callpeak -t data/mapping/Dr_VenusAb_S18_bowtie2.sorted.bam -c data/mapping/Dr_Neg_S20_bowtie2.sorted.bam -g 2.7e+9 -f BAMPE -n macs2_peak_q0.01 --outdir data/peakcalling/Dr_VenusAb_S18 -q 0.01 --keep-dup all
+macs2 callpeak -t data/mapping/Dr_GFPpoly_S17_bowtie2.sorted.bam -c data/mapping/Dr_Neg_S20_bowtie2.sorted.bam -g 2.7e+9 -f BAMPE -n macs2_peak_q0.01 --outdir data/peakcalling/Dr_GFPpoly_S17 -q 0.01 --keep-dup all
 ```
