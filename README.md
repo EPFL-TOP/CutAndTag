@@ -98,9 +98,19 @@ samtools index data/mapping/Dr_H2AZ_S19_bowtie2.sorted.bam
 samtools index data/mapping/Dr_Neg_S20_bowtie2.sorted.bam
 ```
 
-We can now run the peak calling
+We can now run the peak calling on the files individually
 ```shell
 mkdir data/peakcalling
 macs2 callpeak -t data/mapping/Dr_VenusAb_S18_bowtie2.sorted.bam -c data/mapping/Dr_Neg_S20_bowtie2.sorted.bam -g 2.7e+9 -f BAMPE -n macs2_peak_q0.01 --outdir data/peakcalling/Dr_VenusAb_S18 -q 0.01 --keep-dup all
 macs2 callpeak -t data/mapping/Dr_GFPpoly_S17_bowtie2.sorted.bam -c data/mapping/Dr_Neg_S20_bowtie2.sorted.bam -g 2.7e+9 -f BAMPE -n macs2_peak_q0.01 --outdir data/peakcalling/Dr_GFPpoly_S17 -q 0.01 --keep-dup all
 ```
+
+
+We can also run the peak calling on the `intersect` of `VenusAb` and `GFPpoly`:
+```shell
+mkdir data/intersect
+bedtools intersect -a data/mapping/Dr_VenusAb_S18_bowtie2.sorted.bam -b data/mapping/Dr_GFPpoly_S17_bowtie2.sorted.bam > data/intersect/VenusAb_GFPpoly_intersect.bam
+
+macs2 callpeak -t data/intersect/VenusAb_GFPpoly_intersect.bam -c data/mapping/Dr_Neg_S20_bowtie2.sorted.bam -g 2.7e+9 -f BAMPE -n macs2_peak_q0.01 --outdir data/peakcalling/VenusAb_GFPoly_instersect -q 0.01 --keep-dup all
+```
+
